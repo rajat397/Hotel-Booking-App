@@ -98,3 +98,35 @@ export const addMyHotel = async (hotelFormData: FormData)=>{
 
      return response.json();
 }
+
+
+export type HotelType = {
+  _id: string;
+  userId: string;
+  name: string;
+  city:string;
+  country:string;
+  description:string;
+  type:string;
+  adultCount:number;
+  childCount:number;
+  facilities:string[];
+  pricePerNight:number;
+  starRating:number;
+  imageUrls:string[];
+  lastUpdated:Date;
+}
+
+export const fetchMyHotels = async (): Promise<HotelType[]> =>{
+
+     const response = await fetch(`${API_BASE_URL}/api/my-hotels`,{
+      credentials:"include"
+     });
+
+     if(!response.ok){
+      throw new Error("Error fetching hotels");
+     }
+
+    return response.json();
+
+};
